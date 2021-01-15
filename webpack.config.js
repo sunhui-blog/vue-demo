@@ -8,7 +8,7 @@ const isDev = process.env.NODE_ENV === 'development';
 const defaultPlugins = [
   new webpack.DefinePlugin({
     // 主要作用是在此处可以根据isdev配置process.env,一是可以在js代码中可以获取到process.env,
-    'process.env':{
+    'process.env': {
       // 二是webpack或则vue等根据process.env如果是development,会给一些特殊的错误提醒等,而这些特殊项在正式环境是不需要的
       NODE_ENV: isDev ? '"development"' : '"production"'
     }
@@ -63,5 +63,12 @@ module.exports = {
         ]
       }
     ]
+  },
+  resolve: {
+    alias: {
+      // 确定vue的构建版本
+      vue$: 'vue/dist/vue.esm.js'
+    },
+    extensions: ['*', '.js', '.vue', '.json']
   }
 }
